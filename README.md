@@ -2,7 +2,7 @@
   <img src="logo.png" width="128" height="128" alt="FerrumSL — Connection logo">
 </p>
 
-<h1 align="center">FerrumSL</h1>
+<h1 align="center">Ferrum</h1>
 
 <p align="center">
   <strong>Rust plugin framework for SCP: Secret Laboratory</strong>
@@ -27,7 +27,7 @@
 
 ## English
 
-FerrumSL is a plugin framework project for **SCP: Secret Laboratory**. Our goal is to enable developers to write server plugins in **Rust**. The planned architecture connects Rust plugins to the game environment through a **C# bridge**, with integrations for **LabAPI** and **EXILED**.
+Ferrum is a plugin framework project for **SCP: Secret Laboratory**. Our goal is to enable developers to write server plugins in **Rust**. The planned architecture connects Rust plugins to the game environment through a **C# bridge**, with integrations for **LabAPI** and **EXILED**.
 
 **Status:** Early development. No public release is available yet.
 
@@ -39,7 +39,7 @@ Questions or ideas? [Open an issue](https://github.com/Ferrum-SCPSL/FerrumSL/iss
 
 ## Русский
 
-FerrumSL — проект фреймворка для **SCP: Secret Laboratory**. Наша цель — дать разработчикам возможность создавать серверные плагины на **Rust**. Планируемая архитектура связывает Rust-плагины с игровой средой через **мост на C#** и предусматривает интеграцию с **LabAPI** и **EXILED**.
+Ferrum — проект фреймворка для **SCP: Secret Laboratory**. Наша цель — дать разработчикам возможность создавать серверные плагины на **Rust**. Планируемая архитектура связывает Rust-плагины с игровой средой через **мост на C#** и предусматривает интеграцию с **LabAPI** и **EXILED**.
 
 **Статус:** Ранняя стадия разработки. Публичного релиза пока нет.
 
@@ -51,7 +51,7 @@ FerrumSL — проект фреймворка для **SCP: Secret Laboratory**
 
 ## Українська
 
-FerrumSL — проєкт фреймворку для **SCP: Secret Laboratory**. Наша мета — дати розробникам змогу створювати серверні плагіни мовою **Rust**. Запланована архітектура поєднує Rust-плагіни з ігровим середовищем через **міст на C#** та передбачає інтеграцію з **LabAPI** й **EXILED**.
+Ferrum — проєкт фреймворку для **SCP: Secret Laboratory**. Наша мета — дати розробникам змогу створювати серверні плагіни мовою **Rust**. Запланована архітектура поєднує Rust-плагіни з ігровим середовищем через **міст на C#** та передбачає інтеграцію з **LabAPI** й **EXILED**.
 
 **Статус:** Рання стадія розробки. Публічного релізу ще немає.
 
@@ -63,7 +63,7 @@ FerrumSL — проєкт фреймворку для **SCP: Secret Laboratory**
 
 ## 简体中文
 
-FerrumSL 是面向 **SCP: Secret Laboratory** 的插件框架项目。我们的目标是让开发者使用 **Rust** 编写服务器插件。规划中的架构将通过 **C# 桥接层**连接 Rust 插件与游戏环境，并集成 **LabAPI** 和 **EXILED**。
+Ferrum 是面向 **SCP: Secret Laboratory** 的插件框架项目。我们的目标是让开发者使用 **Rust** 编写服务器插件。规划中的架构将通过 **C# 桥接层**连接 Rust 插件与游戏环境，并集成 **LabAPI** 和 **EXILED**。
 
 **项目状态：** 目前处于早期开发阶段，尚未发布公开版本。
 
