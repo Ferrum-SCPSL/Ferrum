@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <FerrumReleaseBranch Condition="'$(FerrumReleaseBranch)' == ''">alpha</FerrumReleaseBranch>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Ferrum.Interop/Ferrum.Interop.csproj" />
+    <PackageReference Include="Northwood.LabAPI" Version="1.1.7" IncludeAssets="compile" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="../CONTRIBUTORS.txt" LogicalName="Ferrum.Loader.Contributors" />
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>Ferrum.ReleaseBranch</_Parameter1>
+      <_Parameter2>$(FerrumReleaseBranch)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+  <Target Name="ValidateFerrumReleaseBranch" BeforeTargets="CoreCompile"
+          Condition="'$(FerrumReleaseBranch)' != 'alpha' And '$(FerrumReleaseBranch)' != 'beta' And '$(FerrumReleaseBranch)' != 'stable'">
+    <Error Text="FerrumReleaseBranch must be alpha, beta or stable." />
+  </Target>
+</Project>

@@ -1,0 +1,9 @@
+[workspace]
+members = ["native/ferrum-native"]
+resolver = "2"
+
+[profile.dev]
+panic = "unwind"
+
+[profile.release]
+panic = "unwind"

@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="Ferrum.Loader/Ferrum.Loader.csproj" />
+  <Project Path="Ferrum.Interop/Ferrum.Interop.csproj" />
+  <Folder Name="/Tests/">
+    <Project Path="tests/Ferrum.Interop.SmokeTests/Ferrum.Interop.SmokeTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,8 @@
+.vs/
+**/bin/
+**/obj/
+packages/
+artifacts/
+target/
+*.user
+*.suo
