@@ -1,7 +1,7 @@
 .vs/
 **/bin/
 **/obj/
-packages/
+/Ferrum/packages/
 **/artifacts/
 **/target/
 *.user

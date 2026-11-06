@@ -1,7 +1,7 @@
 .vs/
 **/bin/
 **/obj/
-packages/
+/packages/
 artifacts/
 target/
 *.user

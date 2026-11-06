@@ -7,5 +7,4 @@
   <Project Path="Ferrum.Localization/Ferrum.Localization.csproj" />
   <Project Path="Ferrum.Updater/Ferrum.Updater.csproj" />
   <Project Path="Ferrum.Installer/Ferrum.Installer.csproj" />
-  <Folder Name="/Tests/"><Project Path="tests/Ferrum.Interop.SmokeTests/Ferrum.Interop.SmokeTests.csproj" /></Folder>
 </Solution>
