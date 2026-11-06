@@ -1,0 +1,40 @@
+key,value
+level.info,INFO
+level.warning,WARN
+level.error,ERROR
+level.debug,DEBUG
+banner.thanks,Thank you for using and supporting the Ferrum framework!
+banner.version,Branch: {0} | Version: v{1}
+banner.contributors,Contributors: {0}
+holiday.halloween,Spooky scary skeletons! Happy Halloween!
+holiday.new_year,Happy New Year!
+runtime.disabled,Ferrum disabled.
+runtime.failed,Ferrum initialization failed. The bridge is unavailable.
+config.invalid,Cannot read Ferrum configuration: {0}. The file was preserved; Ferrum is disabled.
+localization.invalid,Invalid localization catalog; using fallback: {0}
+update.checking,Checking for Ferrum updates.
+update.none,No compatible newer Ferrum release is available.
+update.downloading,Downloading Ferrum v{0}.
+update.prepared,Ferrum v{0} is prepared for the next server start.
+update.restart,Ferrum update: a full server restart is scheduled after this round.
+update.restart_skipped,Ferrum did not override an existing server stop/restart action. The update remains pending.
+update.failed,Ferrum update preparation failed; the current version remains active.
+update.bootstrap_required,Ferrum v{0} requires a newer bootstrap or contract. Run the installer with the server stopped.
+update.rollback,The previous runtime attempt failed. Restoring Ferrum v{0} for this start.
+install.title,Ferrum installer v{0}
+install.server_prompt,Existing SCP:SL dedicated server directory
+install.port_prompt,Server port
+install.stopped_prompt,The server must be stopped. Confirm it is stopped (yes/no)
+install.stopped_required,Stop the server and use --server-stopped in non-interactive mode.
+install.done,Ferrum v{0} installed. Start the server normally.
+install.failed,Ferrum installation failed. Files were restored where replacement had begun.
+install.invalid_arguments,Invalid arguments. Use --help.
+install.no_releases,No release matches the requested version and channel.
+install.paths,"LabAPI: {0}
+Ferrum: {1}
+Port: {2}"
+install.rollback,Previous Ferrum version restored: v{0}.
+install.invalid_server,The directory does not contain an SCP:SL dedicated server with LabAPI.
+install.process_running,A dedicated server process is running from this directory. Stop it before installing.
+install.help,"Usage: Ferrum.Installer --server-path <directory> --port <port> [--labapi-path <directory>] [--ferrum-path <directory>] [--version <v0.1.0|latest>] [--channel <stable|stable_and_prerelease>] [--language <auto|en|ru|uk|zh-CN>] [--rollback] [--server-stopped] [--debug]
+Without arguments, interactive setup is used. This installer installs Ferrum only. Stop the server first."

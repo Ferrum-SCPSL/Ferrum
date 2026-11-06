@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>netstandard2.0</TargetFramework></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../Ferrum.Contracts/Ferrum.Contracts.csproj" /></ItemGroup>
+  <ItemGroup><EmbeddedResource Include="Catalogs/*.csv" /></ItemGroup>
+</Project>

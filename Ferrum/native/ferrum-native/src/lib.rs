@@ -1,5 +1,7 @@
-//! Experimental Ferrum C ABI v1. See docs/abi.md for pointer and ownership contracts.
+//! Experimental Ferrum C ABI v2. See docs/abi.md for pointer and ownership contracts.
 #![deny(unsafe_op_in_unsafe_fn)]
+
+pub mod locales;
 
 use std::panic::{AssertUnwindSafe, catch_unwind};
 use std::{ptr, slice, str};
@@ -90,7 +92,7 @@ unsafe fn guarded(output: *mut FerrumBuffer, operation: impl FnOnce() -> Outcome
 
 #[unsafe(no_mangle)]
 pub extern "C" fn ferrum_abi_version() -> u32 {
-    1
+    2
 }
 
 /// Echo valid UTF-8 and synchronously invoke the host logger once.
@@ -184,8 +186,8 @@ mod tests {
     }
 
     #[test]
-    fn layout_and_status_match_abi_v1() {
-        assert_eq!(ferrum_abi_version(), 1);
+    fn layout_and_status_match_abi_v2() {
+        assert_eq!(ferrum_abi_version(), 2);
         assert_eq!(std::mem::size_of::<FerrumBuffer>(), 16);
         assert_eq!(std::mem::offset_of!(FerrumBuffer, len), 8);
         assert_eq!(std::mem::size_of::<Status>(), 4);

@@ -1,3 +1,4 @@
+# Historical standalone checks; not executed by CI or release workflows. See docs/verification.md.
 #requires -Version 7.0
 param(
     [Parameter(Mandatory)][string]$ServerPath,

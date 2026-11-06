@@ -1,0 +1,80 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ferrum-release-${{ github.ref }}
+  cancel-in-progress: false
+defaults:
+  run:
+    working-directory: Ferrum
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2022
+            platform: win-x64
+          - os: ubuntu-22.04
+            platform: linux-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: Ferrum/global.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.99.1'
+      - name: Build runtime (no tests or server)
+        shell: pwsh
+        run: ./scripts/build.ps1 -Configuration Release
+      - name: Publish standalone installer (do not execute)
+        shell: pwsh
+        run: ./scripts/publish-installer.ps1 -Platform '${{ matrix.platform }}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.platform }}
+          path: |
+            Ferrum/artifacts/package/${{ matrix.platform }}/Release/Ferrum-*
+            Ferrum/artifacts/installer/${{ matrix.platform }}/Ferrum.Installer-Win.exe
+            Ferrum/artifacts/installer/${{ matrix.platform }}/Ferrum.Installer-Linux
+          if-no-files-found: error
+  publish:
+    needs: build
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          path: incoming
+      - name: Assemble and inspect complete release assets
+        run: python scripts/release-assets.py --input ../incoming --output ../release-assets
+      - name: Publish complete release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(python -c "import json; print(json.load(open('release.json'))['version'])")
+          tag="v$version"
+          if [[ "$GITHUB_REF_TYPE" == "tag" && "$GITHUB_REF_NAME" != "$tag" ]]; then echo 'Tag/release.json mismatch'; exit 1; fi
+          prerelease=$(python -c "import json; print(str(json.load(open('release.json'))['prerelease']).lower())")
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then echo 'Release already exists; refusing replacement'; exit 1; fi
+          flags=()
+          if [[ "$prerelease" == "true" ]]; then flags+=(--prerelease --latest=false); else flags+=(--latest); fi
+          gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Ferrum $tag" --notes-file docs/release-notes.md --draft "${flags[@]}"
+          gh release upload "$tag" ../release-assets/* --repo "$GITHUB_REPOSITORY"
+          gh release edit "$tag" --draft=false --repo "$GITHUB_REPOSITORY" "${flags[@]}"

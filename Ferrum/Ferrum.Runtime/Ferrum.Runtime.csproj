@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../Ferrum.Contracts/Ferrum.Contracts.csproj" />
+    <ProjectReference Include="../Ferrum.Interop/Ferrum.Interop.csproj" />
+    <ProjectReference Include="../Ferrum.Localization/Ferrum.Localization.csproj" />
+    <ProjectReference Include="../Ferrum.Updater/Ferrum.Updater.csproj" />
+    <EmbeddedResource Include="../CONTRIBUTORS.txt" LogicalName="Ferrum.Runtime.Contributors" />
+  </ItemGroup>
+</Project>

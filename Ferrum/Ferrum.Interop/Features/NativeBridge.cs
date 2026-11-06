@@ -3,10 +3,11 @@ using Ferrum.Interop.Contracts;
 using Ferrum.Interop.Invocation;
 using Ferrum.Interop.Marshalling;
 using Ferrum.Interop.Platforms;
+using Ferrum.Interop.Memory;
 
 namespace Ferrum.Interop;
 
-/// <summary>Synchronous ABI v1 facade. Dispose disables calls; it does not unload Rust.</summary>
+/// <summary>Synchronous ABI v2 facade. Dispose disables calls; it does not unload Rust.</summary>
 public sealed class NativeBridge : IDisposable
 {
     private readonly NativeApi api;
@@ -32,6 +33,21 @@ public sealed class NativeBridge : IDisposable
                 throw new ObjectDisposedException(nameof(NativeBridge));
 
             return NativeInvocation.Execute(api, value, log);
+        }
+    }
+
+    /// <summary>Rust copies both UTF-8 locale identifiers before returning; no managed pointer is retained.</summary>
+    public void ConfigureLocales(string logLanguage, string pluginLanguage)
+    {
+        lock (gate)
+        {
+            if (disposed) throw new ObjectDisposedException(nameof(NativeBridge));
+            using var log = new PinnedUtf8Input(logLanguage);
+            using var plugin = new PinnedUtf8Input(pluginLanguage);
+            using var output = new OwnedNativeBuffer(api.Free);
+            NativeStatus status = api.SetLocales(log.Data, log.Length, plugin.Data, plugin.Length, out output.Value);
+            string diagnostic = output.Read();
+            if (status != NativeStatus.Ok) throw new NativeBridgeException(status, diagnostic);
         }
     }
 

@@ -3,14 +3,16 @@ using System.Runtime.InteropServices;
 
 namespace Ferrum.Interop.Contracts;
 
-/// <summary>Validates ABI v1 and binds its complete function table once.</summary>
+/// <summary>Validates ABI v2 and binds its complete function table once.</summary>
 public sealed class NativeApi
 {
-    private const uint ExpectedVersion = 1;
+    private const uint ExpectedVersion = 2;
 
     internal ProcessUtf8 Process { get; }
 
     internal FreeBuffer Free { get; }
+
+    internal SetLocalesUtf8 SetLocales { get; }
 
     internal NativeApi(string libraryPath)
     {
@@ -25,5 +27,6 @@ public sealed class NativeApi
 
         Process = module.GetExport<ProcessUtf8>("ferrum_process_utf8");
         Free = module.GetExport<FreeBuffer>("ferrum_buffer_free");
+        SetLocales = module.GetExport<SetLocalesUtf8>("ferrum_set_locales_utf8");
     }
 }

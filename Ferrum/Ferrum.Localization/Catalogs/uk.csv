@@ -1,0 +1,40 @@
+key,value
+level.info,ІНФО
+level.warning,ПОПЕРЕДЖЕННЯ
+level.error,ПОМИЛКА
+level.debug,НАЛАГОДЖЕННЯ
+banner.thanks,Дякуємо за використання та підтримку фреймворку Ferrum!
+banner.version,Гілка: {0} | Версія: v{1}
+banner.contributors,Учасники: {0}
+holiday.halloween,Моторошні страшні скелети! Щасливого Гелловіну!
+holiday.new_year,З Новим роком!
+runtime.disabled,Ferrum вимкнено.
+runtime.failed,Не вдалося ініціалізувати Ferrum. Міст недоступний.
+config.invalid,Не вдалося прочитати конфігурацію Ferrum: {0}. Файл залишено без змін; Ferrum вимкнено.
+localization.invalid,Некоректний каталог локалізації; використовується резервний переклад: {0}
+update.checking,Перевірка оновлень Ferrum.
+update.none,Нових сумісних релізів Ferrum немає.
+update.downloading,Завантаження Ferrum v{0}.
+update.prepared,Ferrum v{0} підготовлено до наступного запуску сервера.
+update.restart,Оновлення Ferrum: повний перезапуск сервера заплановано після цього раунду.
+update.restart_skipped,Ferrum не змінив уже заплановану зупинку/перезапуск сервера. Оновлення очікує наступного запуску.
+update.failed,Не вдалося підготувати оновлення Ferrum; поточна версія залишається активною.
+update.bootstrap_required,Ferrum v{0} потребує новішого Loader або контракту. Запустіть інсталятор із зупиненим сервером.
+update.rollback,Попередній запуск runtime не було завершено. Відновлено Ferrum v{0}.
+install.title,Інсталятор Ferrum v{0}
+install.server_prompt,Каталог наявного dedicated server SCP:SL
+install.port_prompt,Порт сервера
+install.stopped_prompt,Сервер має бути зупинено. Підтвердьте зупинку (yes/no)
+install.stopped_required,Зупиніть сервер і вкажіть --server-stopped у неінтерактивному режимі.
+install.done,Ferrum v{0} встановлено. Запустіть сервер звичайним способом.
+install.failed,Встановлення Ferrum не вдалося. Замінювані файли відновлено з резервної копії.
+install.invalid_arguments,Некоректні аргументи. Скористайтеся --help.
+install.no_releases,"Немає релізу, що відповідає версії та каналу."
+install.paths,"LabAPI: {0}
+Ferrum: {1}
+Порт: {2}"
+install.rollback,Відновлено попередню версію Ferrum: v{0}.
+install.invalid_server,Каталог не містить dedicated server SCP:SL із LabAPI.
+install.process_running,Із цього каталогу запущено процес dedicated server. Зупиніть його перед встановленням.
+install.help,"Використання: Ferrum.Installer --server-path <каталог> --port <порт> [--labapi-path <каталог>] [--ferrum-path <каталог>] [--version <v0.1.0|latest>] [--channel <stable|stable_and_prerelease>] [--language <auto|en|ru|uk|zh-CN>] [--rollback] [--server-stopped] [--debug]
+Без аргументів використовується інтерактивне налаштування. Встановлюється лише Ferrum. Спочатку зупиніть сервер."
