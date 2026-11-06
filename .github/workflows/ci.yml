@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-2022, ubuntu-22.04]
-        configuration: [Release]
+        configuration: [Debug]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
