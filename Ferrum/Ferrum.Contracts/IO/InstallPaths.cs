@@ -23,6 +23,7 @@ public static class InstallPaths
             if (string.IsNullOrWhiteSpace(profile)) throw new DirectoryNotFoundException("User profile unavailable.");
             path = Path.Combine(profile, ".config", "Ferrum");
         }
+        if (!Path.IsPathRooted(path!)) throw new ArgumentException("Ferrum root must be an absolute path.");
         return Path.GetFullPath(path!);
     }
 

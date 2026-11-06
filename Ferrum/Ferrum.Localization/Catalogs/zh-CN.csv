@@ -38,3 +38,4 @@ install.invalid_server,该目录不包含带 LabAPI 的 SCP:SL 专用服务器�
 install.process_running,该目录中的专用服务器进程正在运行。请先停止再安装。
 install.help,"用法：Ferrum.Installer --server-path <目录> --port <端口> [--labapi-path <目录>] [--ferrum-path <目录>] [--version <v0.1.0|latest>] [--channel <stable|stable_and_prerelease>] [--language <auto|en|ru|uk|zh-CN>] [--rollback] [--server-stopped] [--debug]
 无参数时进入交互设置。此程序仅安装 Ferrum。请先停止服务器。"
+install.restore_failed,部分文件无法自动恢复。请保留并恢复备份：{0}

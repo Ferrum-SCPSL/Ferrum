@@ -25,6 +25,8 @@ public sealed class Loader : Plugin
     private Bootstrapper? bootstrap;
     private bool validConfig;
     private SynchronizationContext? mainThread;
+    private int gameThreadId;
+    private volatile bool stopping;
     public override string Name => "Ferrum";
     public override string Description => "Rust framework bootstrap with versioned runtime, localization and updates.";
     public override string Author => "Ferrum SCP:SL Team";
@@ -52,6 +54,8 @@ public sealed class Loader : Plugin
     {
         if (!validConfig || !config.IsEnabled || bootstrap != null) return;
         mainThread = SynchronizationContext.Current;
+        gameThreadId = Thread.CurrentThread.ManagedThreadId;
+        stopping = false;
         try
         {
             string root = InstallPaths.ResolveRoot(config.FerrumDirectoryPath);
@@ -78,11 +82,16 @@ public sealed class Loader : Plugin
         catch (Exception error) { Failed(error); }
     }
 
-    private void RoundEnding(RoundEndingEventArgs args) { Drain(); bootstrap?.RoundEnding(); Drain(); }
+    private void RoundEnding(RoundEndingEventArgs args)
+    {
+        try { Drain(); bootstrap?.RoundEnding(); Drain(); }
+        catch (Exception error) { Failed(error); }
+    }
     private void Post(Action action)
     {
-        if (SynchronizationContext.Current == mainThread && mainThread != null) action();
-        else if (mainThread != null) mainThread.Post(_ => action(), null);
+        if (stopping) return;
+        if (Thread.CurrentThread.ManagedThreadId == gameThreadId) action();
+        else if (mainThread != null) mainThread.Post(_ => { if (!stopping) action(); }, null);
         else mainThreadQueue.Enqueue(action);
     }
     private void Drain() { while (mainThreadQueue.TryDequeue(out Action? action)) action(); }
@@ -111,6 +120,6 @@ public sealed class Loader : Plugin
     public override void Disable()
     {
         Unsubscribe();
-        try { bootstrap?.Dispose(); } finally { bootstrap = null; Drain(); }
+        try { bootstrap?.Dispose(); } finally { bootstrap = null; Drain(); stopping = true; }
     }
 }

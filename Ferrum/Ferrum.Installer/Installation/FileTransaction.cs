@@ -40,6 +40,11 @@ public sealed class FileTransaction : IDisposable
             try { var change = changes[i]; if (change.Backup != null) File.Copy(change.Backup, change.Target, true); else if (File.Exists(change.Target)) File.Delete(change.Target); }
             catch (Exception error) { failures.Add(error); }
         }
-        if (failures.Count != 0) throw new AggregateException("Restore failed; backups: " + backup, failures);
+        if (failures.Count != 0)
+        {
+            var error = new AggregateException("Restore failed; backups: " + backup, failures);
+            error.Data["Ferrum.Backup"] = backup;
+            throw error;
+        }
     }
 }

@@ -54,5 +54,11 @@ public sealed class PreparedPackage : IDisposable
         finally { if (Directory.Exists(stage)) Directory.Delete(stage, true); }
     }
 
-    public void Dispose() { if (Directory.Exists(workingDirectory)) Directory.Delete(workingDirectory, true); }
+    public void Dispose()
+    {
+        // Cleanup failure must not turn a committed installation into a reported installation failure.
+        try { if (Directory.Exists(workingDirectory)) Directory.Delete(workingDirectory, true); }
+        catch (IOException) { }
+        catch (UnauthorizedAccessException) { }
+    }
 }

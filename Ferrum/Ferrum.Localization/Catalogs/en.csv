@@ -38,3 +38,4 @@ install.invalid_server,The directory does not contain an SCP:SL dedicated server
 install.process_running,A dedicated server process is running from this directory. Stop it before installing.
 install.help,"Usage: Ferrum.Installer --server-path <directory> --port <port> [--labapi-path <directory>] [--ferrum-path <directory>] [--version <v0.1.0|latest>] [--channel <stable|stable_and_prerelease>] [--language <auto|en|ru|uk|zh-CN>] [--rollback] [--server-stopped] [--debug]
 Without arguments, interactive setup is used. This installer installs Ferrum only. Stop the server first."
+install.restore_failed,Some files could not be restored automatically. Preserve and restore the backups: {0}

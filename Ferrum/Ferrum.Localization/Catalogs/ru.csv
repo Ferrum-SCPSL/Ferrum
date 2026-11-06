@@ -38,3 +38,4 @@ install.invalid_server,Каталог не содержит dedicated server SCP
 install.process_running,Из этого каталога запущен процесс dedicated server. Остановите его перед установкой.
 install.help,"Использование: Ferrum.Installer --server-path <каталог> --port <порт> [--labapi-path <каталог>] [--ferrum-path <каталог>] [--version <v0.1.0|latest>] [--channel <stable|stable_and_prerelease>] [--language <auto|en|ru|uk|zh-CN>] [--rollback] [--server-stopped] [--debug]
 Без аргументов используется интерактивная настройка. Устанавливается только Ferrum. Сначала остановите сервер."
+install.restore_failed,Часть файлов не удалось восстановить автоматически. Сохраните и восстановите резервные копии: {0}

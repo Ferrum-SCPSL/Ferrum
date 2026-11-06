@@ -60,7 +60,8 @@ public static class Program
         }
         catch (Exception error)
         {
-            string message = error is InstallerException known ? messages.GetMessage(known.Key, known.Arguments)
+            string message = error.Data["Ferrum.Backup"] is string backup ? messages.GetMessage("install.restore_failed", backup)
+                : error is InstallerException known ? messages.GetMessage(known.Key, known.Arguments)
                 : error is ArgumentException || error is FormatException ? messages.GetMessage("install.invalid_arguments") : messages.GetMessage("install.failed");
             Console.Error.WriteLine(message);
             if (options?.Debug == true) Console.Error.WriteLine(error);
